@@ -41,6 +41,23 @@ span.edit-confirm {
   }
 }
 
+#dicebar-result {
+  .roll {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+
+  .hit {
+    /* color: green; */
+    background-color: #5c5;
+  }
+
+  .glitch {
+    /* color: red; */
+    background-color: #f99;
+  }
+}
+
 .results {
   div {
     margin-top: 6px;

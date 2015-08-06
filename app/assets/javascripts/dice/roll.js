@@ -10,6 +10,7 @@ function roll_dice(sides) {
     d1 += t1;
     d2 += t2;
   }
+  var s = '';
   var s1 = '&nbsp;Result: ' + d1;
   var s2 = '&nbsp;Result: ' + d2;
   //r1.sortNumbers().reverse();
@@ -36,6 +37,36 @@ function roll_dice(sides) {
   $('#dicebar-result').html(s);
 }
 
+function roll_shadowrun() {
+  var numdice = Number( $( '#numdice' ).val() );
+  var r = [];
+  var hits = 0, misses = 0;
+  for (var i=0; i<numdice; i++) {
+    var t = Math.ceil( Math.random() * 6 );
+    r[r.length] = t;
+  }
+  var s = '';
+  $('#dicebar-result').html('&nbsp;Result: ');
+  for (var i=0; i<numdice; i++) {
+    var $x = $('<span class="roll">');
+    if (r[i] >= 5) { $x.addClass('hit'); hits++; }
+    if (r[i] == 1) { $x.addClass('glitch'); misses++; }
+    $x.html(r[i]);
+    $('#dicebar-result').append($x);
+  }
+  var s2 = '&nbsp;&nbsp;(' + hits + ' hit';
+  if (hits != 1) { s2 += 's'; }
+  if (misses > numdice/2) { 
+    if (hits === 0) {
+      s2 = '&nbsp;&nbsp;(<span class="glitch" style="font-weight: bold">critical glitch</span>'; 
+    } else {
+      s2 += ', <span class="glitch">glitch</span>'; 
+    }
+  }
+  s2 += ')';
+  $('#dicebar-result').append(s2);
+}
+
 $( function () {
   $( '#roll-4' ).on( 'click', function () { roll_dice(4); } );
   $( '#roll-6' ).on( 'click', function () { roll_dice(6); } );
@@ -43,6 +74,7 @@ $( function () {
   $( '#roll-10' ).on( 'click', function () { roll_dice(10); } );
   $( '#roll-12' ).on( 'click', function () { roll_dice(12); } );
   $( '#roll-20' ).on( 'click', function () { roll_dice(20); } );
+  $( '#roll-sr' ).on( 'click', function () { roll_shadowrun(); } );
 
   $( '#numdice-minone' ).on( 'click', function () {
     var nd = Number( $( '#numdice' ).val() );

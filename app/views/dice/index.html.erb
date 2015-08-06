@@ -37,7 +37,8 @@
             button_tag('d10', type: 'button', id: 'roll-10', class: %w( btn btn-default )) <<
             button_tag('d12', type: 'button', id: 'roll-12', class: %w( btn btn-default )) <<
             button_tag('d20', type: 'button', id: 'roll-20', class: %w( btn btn-primary ))
-          end
+          end << '&nbsp;'.html_safe <<
+          button_tag('Shadowrun d6', type: 'button', id: 'roll-sr', class: %w( btn btn-default ))
         end
       end
     end <<
